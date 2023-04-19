@@ -5,7 +5,7 @@ from hashlib import sha256
 
 # Create your views here.
 def login(request):
-    return HttpResponse('tela de login')
+    return render(request, 'login.html')
 
 def cadastro(request):
     status = request.GET.get('status')
@@ -34,5 +34,11 @@ def valida_cadastro(request):
         return redirect('/auth/cadastro/?status=0')
     except:
         return redirect('/auth/cadastro/?status=4')
+
+
+def validar_login(request):
+    email = request.POST.get('email')
+    senha = request.POST.get('senha')
+    return HttpResponse(f"{email} {senha}")
 
 
